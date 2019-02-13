@@ -1,0 +1,77 @@
+﻿/************************
+* Name: CSS footer.css
+* Description: Footer design
+* Initial Creation Date: 11/04/2018
+* Last Modification Date: 11/17/2018
+* Author: Wyly Andrews
+*************************/
+
+#footerOptions ul {
+    list-style-type: none;
+    margin: auto;
+    overflow: hidden;
+    background-color: #404041;
+    border-top: solid;
+    border-bottom: solid;
+    width: 100%;
+}
+
+#footerOptions li {
+    display:inline-block;
+}
+
+#footerOptions li a {
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+#footerOptions li a:hover {
+    background-color: #111;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    position: relative;
+}
+
+body::after {
+    content: '';
+    display: block;
+    height: 200px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #404041;
+    font-size: 11px;
+}
+
+footer p {
+    color: white;
+    margin: 5px;
+    padding: 10px;
+}
+
+#department {
+    float: left;
+}
+
+#lastUpdated {
+    display: block;
+    float: right;
+}
+
+footer a {
+    color: white;
+}
+
+footer a:hover {
+    color: #ffcc00
+}

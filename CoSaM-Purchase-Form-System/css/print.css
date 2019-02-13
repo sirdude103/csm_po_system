@@ -1,0 +1,54 @@
+/************************
+* Name: CSS print.css
+* Description: css used to print webpages
+* Initial Creation Date: 10/26/2018
+* Last Modification Date: 11/26/2018
+* Author: Wyly Andrews
+*************************/
+
+@media print {
+    @page { margin: 0.5cm; }
+    html, body {
+        font-family: Arial, sans-serif;
+        /*font-size: 24px;*/
+        height: 1vh;
+        overflow: visible;
+    }
+
+    .item *, .item {
+        -webkit-column-break-inside: avoid;
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+	#HTMLtoPDF, .item, #printHeader, .printOnly{
+		display: block;
+	}
+
+	.header #name, .header #pageName {
+		color: black;
+	}
+
+	.header {
+		position: fixed;
+	}
+
+	.page::before {
+		content: '';
+		display: inline;
+		height: 40px;
+		grid-column-start: 1;
+		grid-column-end: 3;
+	}
+
+	#page1 {
+		-webkit-column-break-after: always;
+        page-break-after: always;
+        break-after: always;
+	
+	}
+
+	ul, ul *, li, li *, .printButton, .printButton *, footer, footer *, #lastUpdated, #name, body::after, #divButtons {
+		display: none;
+	}
+}

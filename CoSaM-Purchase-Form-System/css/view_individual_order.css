@@ -1,0 +1,136 @@
+﻿/************************
+* Name: CSS view_individual_order.css
+* Description: main css for view_individual_order.php
+* Initial Creation Date: 10/22/2018
+* Last Modification Date: 11/26/2018
+* Author: Wyly Andrews
+*************************/
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-size: 27px;
+    line-height: 21px;
+}
+
+.page {
+    display: grid;
+    grid-template-rows: max-content;
+    grid-template-columns: 50%;
+    align-items: stretch;
+    margin: 10px;
+    height: 100%;
+}
+
+#EmplInfo {
+    grid-row-start: 1;
+    grid-row-end: 1;
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+#VendInfo {
+    grid-row-start: 1;
+    grid-row-end: 1;
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+#ShipInfo {
+    grid-row-start: 2;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+#BillInfo {
+    grid-row-start: 2;
+    grid-row-end: 2;
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+#productInfo {
+    grid-row-start: 5;
+    grid-row-end: 5;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+#additionalInfo {
+    grid-row-start: 3;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+#totalInfo {
+    grid-row-start: 3;
+    grid-row-end: 3;
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+#fundingInfo {
+    grid-row-start: 4;
+    grid-row-end: 4;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+body > button {
+    display: block;
+}
+
+body > button:before {
+    clear: both;
+    content: "";
+    display: block;
+}
+
+/* Clear floats after the columns */
+#HTMLtoPDF:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.sharedColumn {
+    display: inline;
+    float: left;
+    width: 100%;
+}
+
+.item {
+    display: inline;
+    float: left;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+h4 {
+    display: inline;
+}
+
+fieldset {
+    height: 100%;
+}
+
+.printButton {
+    margin: 10px;
+}
+
+#productInfo {
+    width: 100%;
+}
+
+#fundingInfo {
+    width: 100%;
+}

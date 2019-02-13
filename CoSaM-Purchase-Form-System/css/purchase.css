@@ -1,0 +1,59 @@
+﻿/************************
+* Name: CSS purchase.css
+* Description: main css for purchase form (form.php)
+* Initial Creation Date: 11/10/2018
+* Last Modification Date: 01/12/2018
+* Author: Wyly Andrews
+*************************/
+
+html, body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-size: 27px;
+    line-height: 21px;
+}
+
+fieldset {
+    width: 100%;
+}
+
+form {
+    display: table;
+    border-spacing: 20px 5px;
+
+    width: 100%;
+}
+
+label {
+    display: table-cell;
+
+    margin: 5%;
+}
+
+label#name {
+    display: block;
+    margin: 0;
+}
+
+div.inputRow {
+    display: table-row;
+}
+
+input, select {
+    display: table-cell;
+}
+
+textarea {
+    display: block;
+}
+
+.warning {
+    color: red;
+}
+
+#formSection {
+    width: 90%;
+    margin: 0 5%;
+}

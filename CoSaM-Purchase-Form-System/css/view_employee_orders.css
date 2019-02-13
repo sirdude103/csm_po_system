@@ -1,0 +1,25 @@
+﻿/************************
+* Name: CSS view_employee_orders.css
+* Description: main css for view_employee_order.php
+* Initial Creation Date: 10/28/2018
+* Last Modificatin Date: 11/09/2018
+* Author: Wyly Andrews
+*************************/
+
+html, body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-size: 27px;
+    line-height: 21px;
+}
+
+form {
+    margin: 10px;
+}
+
+#searchSection {
+    width: 95%;
+    margin: 0 2.5%;
+}

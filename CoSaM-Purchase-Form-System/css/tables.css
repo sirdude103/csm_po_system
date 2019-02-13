@@ -1,0 +1,42 @@
+/************************
+* Name: CSS table.css
+* Description: helper css files for tables only
+* Initial Creation Date: 11/09/2018
+* Last Modificatin Date: 11/11/2018
+* Author: Wyly Andrews
+*************************/
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    overflow: scroll;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    text-align: center;
+    padding: 0 0.5%;
+    min-height: 100px;
+    width: 10%;
+}
+
+td p {
+    max-height: 100px;
+    vertical-align: middle;
+    text-align: center;
+    overflow: auto;
+    padding: 0;
+    margin: 0;
+}
+
+tr {
+    width: 90%;
+    height: 50px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
