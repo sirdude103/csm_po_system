@@ -16,6 +16,7 @@ if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
 
 	$emplIDCheck = $_POST[ 'ID' ];
 	
+	// Form search query to get employee information located across multiple tables
 	$searchQuery =  "SELECT T1.ID, T1.emplFirstName, T1.emplLastName, T1.department, T1.emplEmail, T1.emplType, employees.emplFirstName, employees.emplLastName ";
 	$searchQuery .= "FROM employees RIGHT JOIN ";
 	$searchQuery .= "( SELECT ID, emplFirstName, emplLastName, department, emplEmail, emplType, advisorID ";

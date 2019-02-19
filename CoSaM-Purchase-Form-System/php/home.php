@@ -12,6 +12,9 @@ session_start();
 if ( isset( $_SESSION[ 'emplID' ] ) ) 
 { 
 	$emplName = $_SESSION[ 'emplFirstName' ]." ".$_SESSION[ 'emplLastName' ];
+	$_SESSION['ePUID'] = $_SERVER['HTTP_CAS_MAIL'] ;
+	$ePUID = $_SESSION[ 'ePUID' ];
+	//alert($_SESSION['ePUID']);
 }
 else
 {
@@ -33,6 +36,89 @@ include_once( '../php/header_footer.php' );
 <body>
 	<h1>Home</h1></br>
 	<h3>Welcome, <?php echo $emplName; ?>!</h3></br>
+	<h5>
+	<?php 
+		$attr = phpCAS::getAttributes();
+		$user = phpCAS::getUser();
+		echo 'Your username is: ' . $attr['username'] . "</br>";
+		echo 'Your ePUID is: ' . $attr['eduPersonUniqueId'] . "</br>";
+		echo 'Your user_id is: ' . $attr['user_id'] . "</br>";
+		echo 'Your nid is: ' . $attr['nid'] . "</br>";
+		echo 'Your unique_id is: ' . $attr['unique_id'] . "</br>";
+		echo 'Server UID is: ' . $_SERVER['HTTP_CAS_UID'] .  "</br>";
+		echo 'Server unique_id is: ' .$_SERVER['HTTP_CAS_UNIQUE_ID'] . "</br>";
+		//echo 'Your username is: ' . attr['username'] . "</br>";
+		//echo $_SERVER['HTTP_CAS_UID']; 
+	?></h2></br>
 	<p>Please use the navigation bar at the top to get started.</p>
+
+	<h6>phpCAS::getAttributes: </h6></br>
+	<ul style="background-color: white">
+	<?php
+	foreach (phpCAS::getAttributes() as $key => $value) {
+		if (is_array($value)) {
+			echo '<li>', $key, ':<ol>';
+			foreach ($value as $item) {
+				echo '<li><strong>', $item, '</strong></li><br>';
+			}
+			echo '</ol></li>';
+		} else {
+			echo '<li>', $key, ': <strong>', $value, '</strong></li><br>' . PHP_EOL;
+		}
+	}
+	?>
+	</ul>
+
+	<h6>phpCAS::getUser: </h6></br>
+	<ul style="background-color: white">
+	<?php
+	foreach (phpCAS::getUser() as $key => $value) {
+		if (is_array($value)) {
+			echo '<li>', $key, ':<ol>';
+			foreach ($value as $item) {
+				echo '<li><strong>', $item, '</strong></li><br>';
+			}
+			echo '</ol></li>';
+		} else {
+			echo '<li>', $key, ': <strong>', $value, '</strong></li><br>' . PHP_EOL;
+		}
+	}
+	?>
+	</ul>
+	
+	<h6>$_SERVER: </h6></br>
+	<ul style="background-color: white">
+	<?php
+	foreach ($_SERVER as $key => $value) {
+		if (is_array($value)) {
+			echo '<li>', $key, ':<ol>';
+			foreach ($value as $item) {
+				echo '<li><strong>', $item, '</strong></li><br>';
+			}
+			echo '</ol></li>';
+		} else {
+			echo '<li>', $key, ': <strong>', $value, '</strong></li><br>' . PHP_EOL;
+		}
+	}
+	?>
+	</ul>
+
+	<h6>$_REQUEST: </h6></br>
+	<ul style="background-color: white">
+	<?php
+	foreach ($_REQUEST as $key => $value) {
+		if (is_array($value)) {
+			echo '<li>', $key, ':<ol>';
+			foreach ($value as $item) {
+				echo '<li><strong>', $item, '</strong></li><br>';
+			}
+			echo '</ol></li>';
+		} else {
+			echo '<li>', $key, ': <strong>', $value, '</strong></li><br>' . PHP_EOL;
+		}
+	}
+	?>
+	</ul>
+
 </body>
 </html>
