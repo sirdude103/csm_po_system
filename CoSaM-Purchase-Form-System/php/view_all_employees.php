@@ -3,24 +3,17 @@
 # Name: PHP view_all_employees.php
 # Description: Shows all employees in system
 # Initial Creation Date: 11/07/2018
-# Last Modification Date: 01/30/2019
+# Last Modification Date: 02/21/2019
 # Author: Wyly Andrews
 ####################
 
-require ( '../php/database_connect.php' ); # Reference to php file that connects to database goes here
-	
-#start session so we can access session variables
-session_start();
-if ( isset( $_SESSION[ 'emplID' ] ) && $_SESSION[ 'emplType' ] == 2 ) 
+require "../php/initialization.php"; 
+
+# Reject access
+if ( $_SESSION[ 'emplType' ] != 2 ) 
 { 
-	$emplID = $_SESSION[ 'emplID' ];
-}
-else
-{
 	header("Location: ../html/login.html");
 }
-
-include( '../php/header_footer.php' );
 
 #Search details
 $searchRequest = "0";

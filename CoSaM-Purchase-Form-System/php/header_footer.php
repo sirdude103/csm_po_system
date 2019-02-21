@@ -3,23 +3,12 @@
 # Name: PHP header_footer.php
 # Description: Includes php and html used on almost every page
 # Initial Creation Date: 10/10/2018
-# Last Modification Date: 01/28/2019
+# Last Modification Date: 02/20/2019
 # Author: Wyly Andrews
 ####################
 
-	require "../php/timeout.php";
-	include_once("../php/CAS_authentication.php");
-	
-	#start session so we can access session variables
-	session_start();
-	if ( !isset( $_SESSION[ 'emplID' ] ) ) 
-	{ 
-		header("Location: ../html/login.html");
-	}
-
-	$emplType = $_SESSION[ 'emplType' ];
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>

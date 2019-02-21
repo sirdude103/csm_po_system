@@ -3,9 +3,11 @@
 # Name: PHP home.php
 # Description: Hosts home page to link to other options
 # Initial Creation Date: 11/26/2018
-# Last Modification Date: 11/26/2018
+# Last Modification Date: 02/21/2019
 # Author: Wyly Andrews
 ####################
+
+require "../php/initialization.php";
 
 #start session so we can access session variables
 session_start();
@@ -14,14 +16,11 @@ if ( isset( $_SESSION[ 'emplID' ] ) )
 	$emplName = $_SESSION[ 'emplFirstName' ]." ".$_SESSION[ 'emplLastName' ];
 	$_SESSION['ePUID'] = $_SERVER['HTTP_CAS_MAIL'] ;
 	$ePUID = $_SESSION[ 'ePUID' ];
-	//alert($_SESSION['ePUID']);
 }
 else
 {
 	header("Location: ../html/login.html");
 }
-
-include_once( '../php/header_footer.php' );
 
 ?>
 
@@ -70,21 +69,10 @@ include_once( '../php/header_footer.php' );
 	</ul>
 
 	<h6>phpCAS::getUser: </h6></br>
-	<ul style="background-color: white">
+
 	<?php
-	foreach (phpCAS::getUser() as $key => $value) {
-		if (is_array($value)) {
-			echo '<li>', $key, ':<ol>';
-			foreach ($value as $item) {
-				echo '<li><strong>', $item, '</strong></li><br>';
-			}
-			echo '</ol></li>';
-		} else {
-			echo '<li>', $key, ': <strong>', $value, '</strong></li><br>' . PHP_EOL;
-		}
-	}
+	echo phpCAS::getUser();
 	?>
-	</ul>
 	
 	<h6>$_SERVER: </h6></br>
 	<ul style="background-color: white">

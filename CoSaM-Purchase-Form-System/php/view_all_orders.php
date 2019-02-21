@@ -3,20 +3,15 @@
 # Name: PHP view_all_orders.php
 # Description: Shows all orders in system
 # Initial Creation Date: 11/07/2018
-# Last Modification Date: 01/16/2018
+# Last Modification Date: 02/21/2019
 # Author: Wyly Andrews
 ####################
 
-require ( '../php/database_connect.php' ); # Reference to php file that connects to database goes here
-	
-#start session so we can access session variables
-session_start();
-if ( isset( $_SESSION[ 'emplID' ] ) && $_SESSION[ 'emplType' ] == 2 ) 
+require "../php/initialization.php";
+
+# Reject access
+if ( $_SESSION[ 'emplType' ] != 2 ) 
 { 
-	$emplID = $_SESSION[ 'emplID' ];
-}
-else
-{
 	header("Location: ../html/login.html");
 }
 
@@ -27,46 +22,6 @@ function makeJSButton($orderIDForView) {
 	print "<input type='submit' value='View'/>";
 	print "</form>";
 	print "</td>";
-}
-
-include( '../php/header_footer.php' );
-	
-
-# Return employee
-# Unsure where to use this, saved for use later
-function makeEmployeeTable() {
-	global $emplID;
-	global $dbc;
-
-	$searchQuery = ( " SELECT * FROM employees WHERE ID = ? ");
-
-	$preparedStatement = mysqli_prepare($dbc, $searchQuery);
-	
-	mysqli_stmt_bind_param($preparedStatement, 'i', $emplIDCheck);
-	
-	$isSuccess = mysqli_stmt_execute($preparedStatement);
-	
-	$result = mysqli_stmt_get_result($preparedStatement);
-
-	if ($isSuccess)
-	{
-		$row = mysqli_fetch_array($result, MYSQLI_NUM);
-	}
-	else 
-	{
-		echo "Error occurred. Record not found.";
-		mysqli_close($dbc);
-		exit();
-	}
-
-	print "<table border>";
-	print "<tr><td>Employee ID</td><td>Employee First Name</td><td>Employee Last Name</td><td>Department</td><td>Employee Advisor</td><td>Email</td></tr>";
-	print "<br/>";
-	print "<tr>";
-	foreach($row as $key => $value)
-		print ("<td>$value</td>");
-	print "</tr>";
-	print "</table>";
 }
 
 #Search details

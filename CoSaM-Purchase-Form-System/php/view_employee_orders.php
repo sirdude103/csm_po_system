@@ -3,22 +3,11 @@
 # Name: PHP view_employee_orders.php
 # Description: Views all orders made by the logged-in user
 # Initial Creation Date: 10/14/2018
-# Last Modification Date: 01/28/2019
+# Last Modification Date: 02/21/2019
 # Author: Wyly Andrews
 ####################
 
-require ( '../php/database_connect.php' ); # Reference to php file that connects to database goes here
-	
-#start session so we can access session variables
-session_start();
-if ( isset( $_SESSION[ 'emplID' ] ) ) 
-{ 
-	$emplID = $_SESSION[ 'emplID' ];
-}
-else
-{
-	header("Location: ../html/login.html");
-}
+require "../php/initialization.php";
 
 function makeJSButton($orderIDForView) {
 	print "<td>";
@@ -28,8 +17,6 @@ function makeJSButton($orderIDForView) {
 	print "</form>";
 	print "</td>";
 }
-
-include( '../php/header_footer.php' );
 
 #Search details
 $searchRequests = array();

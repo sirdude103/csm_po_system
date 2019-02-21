@@ -4,30 +4,21 @@
 # Name: PHP view_individual_order.php
 # Description: Views accessed order and all connected products
 # Initial Creation Date: 10/20/2018
-# Last Modification Date: 01/31/2019
+# Last Modification Date: 02/21/2019
 # Author: Wyly Andrews
 ####################
 
-# Open database connection
-require ( '../php/database_connect.php' );
+require "../php/initialization.php";
 
+# Call session variables
+$emplID = $_SESSION[ 'emplID' ];
+$emplFirstName = $_SESSION[ 'emplFirstName' ];
+$emplLastName = $_SESSION[ 'emplLastName' ];
+$emplDepartment = $_SESSION[ 'emplDepartment' ];
+$emplAdvisor = $_SESSION[ 'emplAdvisor' ];
+$emplEmail = $_SESSION[ 'emplEmail' ];
+if($emplEmail == "") { $emplEmail = "None"; }
 
-#start session so we can access session variables
-session_start();
-if ( isset( $_SESSION[ 'emplID' ] ) ) 
-{ 
-	$emplID = $_SESSION[ 'emplID' ];
-	$emplFirstName = $_SESSION[ 'emplFirstName' ];
-	$emplLastName = $_SESSION[ 'emplLastName' ];
-	$emplDepartment = $_SESSION[ 'emplDepartment' ];
-	$emplAdvisor = $_SESSION[ 'emplAdvisor' ];
-	$emplEmail = $_SESSION[ 'emplEmail' ];
-	if($emplEmail == "") { $emplEmail = "None"; }
-}
-else
-{
-	header("Location: ../html/login.html");
-}
 
 if ( isset( $_SESSION[ 'viewOrderByID' ] ) )
 {
@@ -48,8 +39,6 @@ else
 	#If failure, bail back to home
 	header("Location: ../php/home.php");
 }
-
-include( '../php/header_footer.php' );
 
 # Return orders
 $searchQuery = ( " SELECT * FROM orders WHERE orderID = $orderID " );

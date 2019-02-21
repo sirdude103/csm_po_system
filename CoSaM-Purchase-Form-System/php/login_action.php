@@ -3,11 +3,11 @@
 # Name: PHP login_action.php
 # Description: Handles Login attempts
 # Initial Creation Date: 10/2018
-# Last Modificatin Date: 01/31/2019
+# Last Modification Date: 02/21/2019
 # Author: Wyly Andrews
 ####################
 
-require "../php/timeout.php";
+require "../php/initialization.php";
 
 if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
 {

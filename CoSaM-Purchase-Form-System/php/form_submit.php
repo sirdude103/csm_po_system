@@ -7,14 +7,7 @@
 # Author: Wyly Andrews
 #############################
 
-require "../php/timeout.php";
-
-#start session so we can access session variables
-session_start();
-if ( !isset( $_SESSION[ 'emplID' ] ) ) 
-{ 
-	header("Location: ../html/login.html");
-}
+require "../php/initialization.php";
 
 # Helper function to help us debug the program
 function debug_to_console( $data ) {
@@ -28,9 +21,6 @@ function debug_to_console( $data ) {
 if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
 {
 
-    # Open database connection
-	require ( '../php/database_connect.php' ); 
-    
     function modify_input($input) {
         $input = trim($input);
         $input = htmlspecialchars($input);
