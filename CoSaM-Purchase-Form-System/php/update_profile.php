@@ -23,10 +23,10 @@ if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
 	if( $_SESSION[ 'emplDepartment' ] != $newDepartment || $_SESSION[ 'emplEmail' ] != $newEmail )
 	{
 		# Update is necessary
-		$updateQuery = "UPDATE employees SET department = ?, emplEmail = ? WHERE ID = $emplID";
+		$updateQuery = "UPDATE employees SET department = ?, emplEmail = ? WHERE ID = ?";
 		$preparedStatement = mysqli_prepare($dbc, $updateQuery);
 	
-		mysqli_stmt_bind_param($preparedStatement, 'ss', $newDepartment, $newEmail);
+		mysqli_stmt_bind_param($preparedStatement, 'ssi', $newDepartment, $newEmail, $emplID);
 	
 		$isSuccess = mysqli_stmt_execute($preparedStatement);
 

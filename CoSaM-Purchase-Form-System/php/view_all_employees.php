@@ -19,7 +19,7 @@ if ( $_SESSION[ 'emplType' ] != 2 )
 $searchRequest = "0";
 $searchType = "0";
 $searchOperator = "LIKE";
-$sortType = "ID";
+$sortType = "T1.ID";
 $sortDirection = "";
 
 if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
@@ -63,11 +63,22 @@ function makeEmployeeTable() {
 	$searchQuery .= " FROM employees LEFT JOIN advisorAssistant ON advisorAssistant.assistantID = employees.ID ) ";
 	$searchQuery .= "AS T1 ON T1.advisorID = employees.ID ";
 
-	$searchQuery .= "WHERE $searchType $searchOperator ? ORDER BY T1.$sortType $sortDirection ";
+	//$searchQuery .= "WHERE $searchType ? $searchRequest ORDER BY T1.$sortType $sortDirection ";
+
+	if( $searchOperator == "LIKE" ) {
+		$searchQuery .= "WHERE ? LIKE ? ORDER BY ?";
+	}
+	else {
+		$searchQuery .= "WHERE ? = ? ORDER BY ?";
+	}
+
+	if( $sortDirection == "desc") {
+		$searchQuery .= " DESC";
+	}
 
 	$preparedStatement = mysqli_prepare($dbc, $searchQuery);
 	
-	mysqli_stmt_bind_param($preparedStatement, 's', $searchRequest);
+	mysqli_stmt_bind_param($preparedStatement, 'sss', $searchType, $searchRequest, $sortType);
 	
 	$isSuccess = mysqli_stmt_execute($preparedStatement);
 	
@@ -81,6 +92,7 @@ function makeEmployeeTable() {
 		echo "<br/>employee ID: " . $emplID;
 		echo "<br/>search type: " . $searchType;
 		echo "<br/>search request: ". $searchRequest;
+		echo "<br/>search operator: ". $searchOperator;
 		echo "<br/>query: " . $searchQuery;
 		mysqli_close($dbc);
 		exit();

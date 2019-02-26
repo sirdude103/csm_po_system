@@ -3,7 +3,7 @@
 # Name: PHP form_submit.php
 # Description: Handles initial purchase form submission
 # Initial Creation Date: 9/30/2018
-# Last Modification Date: 12/05/2018
+# Last Modification Date: 02/25/2019
 # Author: Wyly Andrews
 #############################
 
@@ -134,8 +134,14 @@ if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
 	# Create bridge table between orders and products
 	for ($i = 0; $i < count($currentOrderProducts); $i++ )
 	{
-		$insertQuery = ("INSERT INTO orderProduct(orderID, productID) values ('$orderID', '$currentOrderProducts[$i]')");
-		$isSuccess = mysqli_query($dbc, $insertQuery);
+		$insertQuery = ("INSERT INTO orderProduct(orderID, productID) values ( ? , ? )");
+		
+		$preparedStatement = mysqli_prepare($dbc, $insertQuery);
+	
+		mysqli_stmt_bind_param($preparedStatement, 'ii', $orderID, $currentOrderProducts[$i] );
+	
+		$isSuccess = mysqli_stmt_execute($preparedStatement);
+
 		if ($isSuccess) 
 		{
 			echo "orderProduct query submitted successfully.";

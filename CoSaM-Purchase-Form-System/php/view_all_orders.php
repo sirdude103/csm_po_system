@@ -52,6 +52,19 @@ if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
 			$searchTypes[ $key ] = "orderID"; #Dummy value
 		}
 
+		# clean $searchTypes entries
+		switch ($searchTypes[ $key ]) {
+			case "orderDepartment":
+			case "funding":
+			case "vendName":
+			case "employeeID":
+			case "orderID":
+				break;
+			default:
+				$searchTypes[ $key ] = "orderID";
+				break;
+		}
+
 		if($searchRequest == "") {
 			$searchRequest == 0;
 			$searchTypes[ $key ] = 0;
@@ -66,8 +79,31 @@ if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
 	}
 
 	foreach ($sortTypes as $key => $sortType) {
-		if ($sortTypes[$key] == "") {
-			$sortTypes[$key] = "orderID";
+
+		# clean $sortTypes entries
+		switch ($sortTypes[ $key ]) {
+			case "orderID":
+			case "employeeID":
+			case "creationDT":
+			case "vendName":
+			case "funding":
+			case "shippingHandlingCost":
+			case "additionalCost":
+			case "totalCost":
+			case "orderStatus":
+			case "orderDepartment":
+				break;
+			default:
+				$sortTypes[ $key ] = "orderID";
+				break;
+		}
+
+		# clean $sortDirections entries
+		switch ($sortDirections[ $key ]) {
+			case "desc":
+				break;
+			default:
+				$sortDirections[ $key ] = " ";
 		}
 	}
 
@@ -92,15 +128,10 @@ function makeOrdersTable() {
 
 	if( count($sortTypes) >= 1 ) { $searchQuery .= " ORDER BY "; }
 
-	//$sortTypes = array_reverse($sortTypes, true);
-	//$sortDirections = array_reverse($sortDirections, true);
-
 	foreach($sortTypes as $key => $sortType) {
 		if ($key != 0) { $searchQuery .= ", "; }
 		$searchQuery .= $sortTypes[$key]." ".$sortDirections[$key];
 	}
-	//$searchQuery = ( " SELECT * FROM orders WHERE $searchType $operator ? ORDER BY $sortType $sortDirection");
-
 	$preparedStatement = mysqli_prepare($dbc, $searchQuery);
 	
 	if (count($searchRequests) == 1) {

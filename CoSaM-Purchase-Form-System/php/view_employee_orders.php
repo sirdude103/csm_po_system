@@ -25,6 +25,7 @@ $searchOperators = array();
 $sortTypes = array();
 $sortDirections = array();
 
+#Default values for all available orders
 array_push($searchRequests, "0");
 array_push($searchTypes, "0");
 array_push($searchOperators, "=");
@@ -33,6 +34,7 @@ array_push($sortDirections, "");
 
 if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
 {
+	# overwrite default values above
 	$searchRequests = $_POST['searchRequest'];
 	$searchTypes = $_POST['searchType'];
 	$searchOperators = array();
@@ -44,6 +46,18 @@ if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
 
 		if($searchTypes[ $key ] == "" ) {
 			$searchTypes[ $key ] = "orderID"; #Dummy value
+		}
+
+		# clean $searchTypes entries
+		switch ($searchTypes[ $key ]) {
+			case "orderDepartment":
+			case "funding":
+			case "vendName":
+			case "orderID":
+				break;
+			default:
+				$searchTypes[ $key ] = "orderID";
+				break;
 		}
 
 		if($searchRequest == "") {
@@ -60,8 +74,29 @@ if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
 	}
 
 	foreach ($sortTypes as $key => $sortType) {
-		if ($sortTypes[$key] == "") {
-			$sortTypes[$key] = "orderID";
+		# clean $sortTypes entries
+		switch ($sortTypes[ $key ]) {
+			case "orderID":
+			case "creationDT":
+			case "vendName":
+			case "funding":
+			case "shippingHandlingCost":
+			case "additionalCost":
+			case "totalCost":
+			case "orderStatus":
+			case "orderDepartment":
+				break;
+			default:
+				$sortTypes[ $key ] = "orderID";
+				break;
+		}
+
+		# clean $sortDirections entries
+		switch ($sortDirections[ $key ]) {
+			case "desc":
+				break;
+			default:
+				$sortDirections[ $key ] = " ";
 		}
 	}
 }

@@ -22,9 +22,11 @@ else if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST'  )
 	$orderID = $_POST[ 'deleteOrderID' ];
 
 	# Perform the delete query
-	$deleteQuery = ("DELETE FROM orders WHERE orderID = $orderID ; ");
+	$deleteQuery = ("DELETE FROM orders WHERE orderID = ? ; ");
 		
 	$preparedStatement = mysqli_prepare($dbc, $deleteQuery);
+
+	mysqli_stmt_bind_param($preparedStatement, 'i', $orderID);
 	
 	$isSuccess = mysqli_stmt_execute($preparedStatement);
 	

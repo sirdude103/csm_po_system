@@ -15,15 +15,19 @@ if ( $_SESSION[ 'emplType' ] < 1 )
 	header("Location: ../php/home.php");
 }
 
+$emplID = $_SESSION[ 'emplID' ];
+
 # Return employee
 function makeAssistantTable() {
 	global $emplID;
 	global $dbc;
 
-	$searchQuery = ( " SELECT * FROM employees INNER JOIN ( SELECT assistantID FROM advisorAssistant WHERE advisorID = $emplID ) AS T1 ON T1.assistantID = employees.ID; ");
+	$searchQuery = ( " SELECT * FROM employees INNER JOIN ( SELECT assistantID FROM advisorAssistant WHERE advisorID = ? ) AS T1 ON T1.assistantID = employees.ID; ");
 
 	$preparedStatement = mysqli_prepare($dbc, $searchQuery);
 	
+	mysqli_stmt_bind_param($preparedStatement, 'i', $emplID);
+
 	$isSuccess = mysqli_stmt_execute($preparedStatement);
 	
 	if ($isSuccess)

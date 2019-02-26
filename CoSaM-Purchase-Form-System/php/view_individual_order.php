@@ -41,20 +41,35 @@ else
 }
 
 # Return orders
-$searchQuery = ( " SELECT * FROM orders WHERE orderID = $orderID " );
-$result = mysqli_query($dbc, $searchQuery);
-if (@mysqli_num_rows( $result ) == 1) 
-{
-	$row = mysqli_fetch_row($result);
+$searchQuery = ( " SELECT * FROM orders WHERE orderID = ? " );
+
+$preparedStatement = mysqli_prepare($dbc, $searchQuery);
 	
+mysqli_stmt_bind_param($preparedStatement, 'i', $orderID);
+	
+$isSuccess = mysqli_stmt_execute($preparedStatement);
+
+if ($isSuccess) 
+{
+	
+	$result = mysqli_stmt_get_result($preparedStatement);
+	$row = mysqli_fetch_array($result, MYSQLI_NUM);
+
 	# Employee Information
 	$emplIDOnOrder = $row[1];
 	
-	$iSearchQuery = ( " SELECT * FROM employees WHERE ID = $emplIDOnOrder " );
-	$iResult = mysqli_query($dbc, $iSearchQuery);
-	if (@mysqli_num_rows( $iResult ) == 1 )
+	$iSearchQuery = ( " SELECT * FROM employees WHERE ID = ? " );
+
+	$iPreparedStatement = mysqli_prepare($dbc, $iSearchQuery);
+	
+	mysqli_stmt_bind_param($iPreparedStatement, 'i', $emplIDOnOrder);
+	
+	$iIsSuccess = mysqli_stmt_execute($iPreparedStatement);
+
+	if ($iIsSuccess)
 	{
-		$iRow = mysqli_fetch_row($iResult);
+		$iResult = mysqli_stmt_get_result($iPreparedStatement);
+		$iRow = mysqli_fetch_array($iResult, MYSQLI_NUM);
 
 		$emplFirstName = $iRow[1];
 		if($emplFirstName == "") { $emplFirstName = "Error"; }
@@ -63,7 +78,7 @@ if (@mysqli_num_rows( $result ) == 1)
 		$emplDepartment = $iRow[3];
 		if($emplDepartment == "") { $emplDepartment = "Error"; }
 		$emplAdvisor = $iRow[4];
-		if($emplAdvisor == "") { $emplAdvisor = "Error"; }
+		if($emplAdvisor == "") { $emplAdvisor = "None"; }
 		$emplEmail = $iRow[5];
 		if($emplEmail == "") { $emplEmail = "None"; }
 	}
@@ -111,9 +126,15 @@ if (@mysqli_num_rows( $result ) == 1)
 	# Individual Product Information
 	$products = array();
 
-	$iSearchQuery = ( " SELECT productID FROM orderProduct WHERE orderID = $orderID");
-	$iResult = mysqli_query($dbc, $iSearchQuery);
-	if ($iResult) 
+	$iSearchQuery = ( " SELECT productID FROM orderProduct WHERE orderID = ?");
+
+	$iPreparedStatement = mysqli_prepare($dbc, $iSearchQuery);
+	
+	mysqli_stmt_bind_param($iPreparedStatement, 'i', $orderID);
+	
+	$iIsSuccess = mysqli_stmt_execute($iPreparedStatement);
+
+	if ($iIsSuccess) 
 	{
 		#echo "orderProduct search query submitted successfully.";
 	}
@@ -127,9 +148,14 @@ if (@mysqli_num_rows( $result ) == 1)
 	for($j=0; $jRow = mysqli_fetch_row($iResult); $j++)
 	{
 		$productID = $jRow[0];
-		$jSearchQuery = ( " SELECT * FROM products WHERE productID = $productID ");
-		$jResult = mysqli_query($dbc, $jSearchQuery);
-		if ($jResult) 
+		$jSearchQuery = ( " SELECT * FROM products WHERE productID = ? ");
+		$jPreparedStatement = mysqli_prepare($dbc, $jSearchQuery);
+	
+		mysqli_stmt_bind_param($jPreparedStatement, 'i', $productID);
+	
+		$jIsSuccess = mysqli_stmt_execute($jPreparedStatement);
+
+		if ($jIsSuccess) 
 		{
 			#echo "search query submitted successfully.";
 		}
@@ -153,20 +179,12 @@ if (@mysqli_num_rows( $result ) == 1)
 	}
 
 }
-elseif (@mysqli_num_rows( $result ) == 0)
+else
 {
 	mysqli_close($dbc);
 	# Continue to display home page on failure.
 	echo '<script type="text/javascript">alert("Order not found, please try again.");</script>';
 	header("Location: ../php/home.php");
-
-} 
-else
-{
-	#theoretically, reaching this point should be impossible
-	mysqli_close($dbc);
-	echo "<label>Critical Error. Please contact an administrator (multiple identical orders detected).</label>";
-	include "../php/home.php";
 }
 
 switch($orderDepartment) {

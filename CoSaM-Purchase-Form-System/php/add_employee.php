@@ -25,7 +25,6 @@ if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
 
 	$preparedStatement = mysqli_prepare($dbc, $insertQuery);
 	
-
 	mysqli_stmt_bind_param($preparedStatement, 's', $username);
 	
 	$isSuccess = mysqli_stmt_execute($preparedStatement);

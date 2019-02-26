@@ -26,9 +26,6 @@ $searchQuery .= "WHERE T1.ePUID = ? ";
 
 $preparedStatement = mysqli_prepare($dbc, $searchQuery);
 
-echo "<script>console.log('search query: $searchQuery')</script>";
-echo "<script>console.log('ePUID: $ePUID')</script>";
-
 mysqli_stmt_bind_param($preparedStatement, 's', $ePUID);
 
 $isSuccess = mysqli_stmt_execute($preparedStatement);
@@ -52,21 +49,8 @@ if ($isSuccess)
 	$emplAdvisor = $row[6]." ".$row[7];
 	if ($emplAdvisor == " ") { $emplAdvisor = "none"; }
 	$_SESSION[ 'emplAdvisor' ] = $emplAdvisor;
-
-	echo "<script type='text/javascript'>";
-	echo "console.log('row[0]: $row[0]');";
-	echo "</script>";
 	
-	header( 'Location: ../php/home.php' );/*
-    while ($row = mysqli_fetch_array($result, MYSQLI_NUM))
-    {
-        foreach ($row as $r)
-        {
-            print "$r ";
-        }
-        print "\n";
-    }*/
-	echo "<script>console.log('made it to the end')</script>";
+	header( 'Location: ../php/home.php' );
 }
 else
 {
