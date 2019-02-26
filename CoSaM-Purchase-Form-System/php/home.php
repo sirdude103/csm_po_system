@@ -19,7 +19,7 @@ if ( isset( $_SESSION[ 'emplID' ] ) )
 }
 else
 {
-	header("Location: ../html/login.html");
+	header("Location: ../php/login_action.php");
 }
 
 ?>
@@ -46,6 +46,7 @@ else
 		echo 'Your unique_id is: ' . $attr['unique_id'] . "</br>";
 		echo 'Server UID is: ' . $_SERVER['HTTP_CAS_UID'] .  "</br>";
 		echo 'Server unique_id is: ' .$_SERVER['HTTP_CAS_UNIQUE_ID'] . "</br>";
+		echo 'Your email is: ' .$attr['mail'] . "</br>";
 		//echo 'Your username is: ' . attr['username'] . "</br>";
 		//echo $_SERVER['HTTP_CAS_UID']; 
 	?></h2></br>

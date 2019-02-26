@@ -18,7 +18,4 @@ if(!phpCAS::isAuthenticated()) {
 
 session_start();
 
-$_SESSION['ePUID'] = $_SERVER{'HTTP_CAS_EDUPERSONUNIQUEID'} ;
-
-
 ?>

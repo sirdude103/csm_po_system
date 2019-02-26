@@ -8,16 +8,17 @@
 ####################
 
 require "../php/CAS_authentication.php";
-require "../php/timeout.php";
-require "../php/header_footer.php";
-require "../php/database_connect.php";
 
 #start session so we can access session variables
 session_start();
 if ( !isset( $_SESSION[ 'emplID' ] ) ) 
 { 
-	header("Location: ../html/login.html");
+	header("Location: ../php/login_action.php");
 }
+
+require "../php/timeout.php";
+require "../php/header_footer.php";
+require "../php/database_connect.php";
 
 $emplType = $_SESSION[ 'emplType' ];
 

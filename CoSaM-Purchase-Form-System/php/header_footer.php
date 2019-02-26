@@ -7,6 +7,8 @@
 # Author: Wyly Andrews
 ####################
 
+$emplType = $_SESSION[ 'emplType' ];
+
 ?>
 
 <!DOCTYPE html>

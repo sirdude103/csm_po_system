@@ -68,27 +68,10 @@ if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
 	}
 	else 
 	{
+		# no employee found
+		mysqli_close($dbc);
+		exit;
 		
-		# Make a new employee
-		$insertQuery = ("INSERT INTO employees (emplFirstName, emplLastName, department, emplAdvisor, emplEmail) values ( ?, ?, ?, ?, ? );");
-		
-		$preparedStatement = mysqli_prepare($dbc, $insertQuery);
-	
-		mysqli_stmt_bind_param($preparedStatement, 'sssss', $emplFirstName, $emplLastName, $emplDepartment, $emplAdvisor, $emplEmail);
-	
-		$isSuccess = mysqli_stmt_execute($preparedStatement);
-		
-		if ($isSuccess) 
-		{
-			echo "employee query submitted successfully.";
-			$employeeID = mysqli_insert_id($dbc);
-		}
-		else 
-		{
-			echo "Error occurred. Record not submitted.";
-			mysqli_close($dbc);
-			exit();
-		}
 	}
 
 	# make a new order
