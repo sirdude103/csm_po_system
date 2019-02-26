@@ -19,7 +19,7 @@ if (isset($_SESSION['LAST_ACTIVITY']) && ($time - $_SESSION['LAST_ACTIVITY']) > 
     session_destroy();
     session_start();
 	# echo "<label>You have been logged out for inactivity.</label>"; # Doesn't work
-	require "../html/login.html";
+	require "../php/home.php";
 }
 
 # update current time

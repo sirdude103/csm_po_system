@@ -12,7 +12,7 @@ require "../php/initialization.php";
 # Reject access
 if ( $_SESSION[ 'emplType' ] != 2 ) 
 { 
-	header("Location: ../html/login.html");
+	header("Location: ../php/home.php");
 }
 
 #Search details

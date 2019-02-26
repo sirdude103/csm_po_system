@@ -14,5 +14,5 @@ session_unset();
 session_destroy();
 
 echo "<label>You have successfully logged out.</label>";
-require "../html/login.html";
+require "../php/home.php";
 ?>
