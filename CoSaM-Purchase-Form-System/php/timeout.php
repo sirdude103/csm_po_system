@@ -18,7 +18,7 @@ if (isset($_SESSION['LAST_ACTIVITY']) && ($time - $_SESSION['LAST_ACTIVITY']) > 
     session_unset();
     session_destroy();
     session_start();
-	# echo "<label>You have been logged out for inactivity.</label>"; # Doesn't work
+	# redirect back to home 
 	require "../php/home.php";
 }
 
