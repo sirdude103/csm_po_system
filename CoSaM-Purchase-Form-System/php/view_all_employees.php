@@ -3,24 +3,17 @@
 # Name: PHP view_all_employees.php
 # Description: Shows all employees in system
 # Initial Creation Date: 11/07/2018
-# Last Modification Date: 01/30/2019
+# Last Modification Date: 02/21/2019
 # Author: Wyly Andrews
 ####################
 
-require ( '../php/database_connect.php' ); # Reference to php file that connects to database goes here
-	
-#start session so we can access session variables
-session_start();
-if ( isset( $_SESSION[ 'emplID' ] ) && $_SESSION[ 'emplType' ] == 2 ) 
+require "../php/initialization.php"; 
+
+# Reject access
+if ( $_SESSION[ 'emplType' ] != 2 ) 
 { 
-	$emplID = $_SESSION[ 'emplID' ];
-}
-else
-{
 	header("Location: ../html/login.html");
 }
-
-include( '../php/header_footer.php' );
 
 #Search details
 $searchRequest = "0";
@@ -160,12 +153,25 @@ function makeEmployeeTable() {
 <head>
     <meta charset="utf-8" />
     <title>View All Employees</title>
-	<link rel="stylesheet" type="text/css" href="../css/view_employee_orders.css">
 	<link rel="stylesheet" type="text/css" href="../css/tables.css">
+	<link rel="stylesheet" type="text/css" href="../css/view_all_employees.css">
+	<link rel="stylesheet" type="text/css" href="../css/view_employee_orders.css">
 </head>
 <body>
-	<div id=searchSection>
-		<h1>View Employees</h1>
+	<div id="addEmployee">
+		<h2>Add Employee</h2>
+		<form action="../php/add_employee.php" method="POST">
+			<table>
+				<tr>
+					<td>Enter employee username: </td>
+					<td><input type="text" id="addRequest" name="addRequest" /></td>
+					<td><input type="submit" ></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div id="searchSection">
+		<h2>View Employees</h2>
 		<form action="../php/view_all_employees.php" method="POST" >
 			<table style="width: 60%">
 				<tbody>
@@ -205,7 +211,7 @@ function makeEmployeeTable() {
 			</table>
 			<input type="submit">
 		</form>
-		<div id=searchResults>
+		<div id="searchResults">
 			<?php makeEmployeeTable(); ?>
 		</div>
 	</div>

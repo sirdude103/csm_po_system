@@ -3,21 +3,14 @@
 # Name: PHP add_assistant.php
 # Description: Adds an assistant based on their ID
 # Initial Creation Date: 01/31/2019
-# Last Modification Date: 01/31/2019
+# Last Modification Date: 02/21/2019
 # Author: Wyly Andrews
 ####################
 
-#start session so we can access session variables
-session_start();
-if ( !isset( $_SESSION[ 'emplID' ] ) ) 
-{ 
-	header("Location: ../html/login.html");
-}
+require "../php/initialization.php";
 
 if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
 {
-	require ( '../php/database_connect.php' );
-
 
 	$assistantID = $_POST['newAssistantID'];
 	

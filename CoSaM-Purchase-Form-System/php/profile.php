@@ -7,24 +7,16 @@
 # Author: Wyly Andrews
 ####################
 
-#start session so we can access session variables
-session_start();
-if ( isset( $_SESSION[ 'emplID' ] ) ) 
-{ 
-	$emplID = $_SESSION[ 'emplID' ];
-	$emplFirstName = $_SESSION[ 'emplFirstName' ];
-	$emplLastName = $_SESSION[ 'emplLastName' ];
-	$emplDepartment = $_SESSION[ 'emplDepartment' ];
-	$emplAdvisor = $_SESSION[ 'emplAdvisor' ];
-	$emplEmail = $_SESSION[ 'emplEmail' ];
-	if($emplEmail == "") { $emplEmail = "None"; }
-}
-else
-{
-	header("Location: ../html/login.html");
-}
+require "../php/initialization.php";
 
-include( '../php/header_footer.php' );
+#grab session variables
+$emplID = $_SESSION[ 'emplID' ];
+$emplFirstName = $_SESSION[ 'emplFirstName' ];
+$emplLastName = $_SESSION[ 'emplLastName' ];
+$emplDepartment = $_SESSION[ 'emplDepartment' ];
+$emplAdvisor = $_SESSION[ 'emplAdvisor' ];
+$emplEmail = $_SESSION[ 'emplEmail' ];
+if($emplEmail == "") { $emplEmail = "None"; }
 
 ?>
 

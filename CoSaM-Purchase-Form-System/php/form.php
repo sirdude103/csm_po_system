@@ -1,20 +1,13 @@
 <?php
-	####################
-	# Name: PHP form.php
-	# Description: Purchase Page
-	# Initial Creation Date: 10/12/2018
-	# Last Modification Date: 01/12/2019
-	# Author: Wyly Andrews
-	####################
+####################
+# Name: PHP form.php
+# Description: Purchase Page
+# Initial Creation Date: 10/12/2018
+# Last Modification Date: 02/21/2019
+# Author: Wyly Andrews
+####################
 
-	#start session so we can access session variables
-	session_start();
-	if ( !isset( $_SESSION[ 'emplID' ] ) ) 
-	{ 
-		header("Location: ../html/login.html");
-	}
-
-	include( '../php/header_footer.php' );
+require "../php/initialization.php";
 ?>
 
 <!DOCTYPE html>

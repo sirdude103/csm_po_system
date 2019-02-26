@@ -3,18 +3,11 @@
 # Name: PHP form_delete.php
 # Description: Handles database work to remove an order from the database
 # Initial Creation Date: 01/29/2019
-# Last Modification Date: 01/29/2019
+# Last Modification Date: 02/21/2019
 # Author: Wyly Andrews
 #############################
 
-require "../php/timeout.php";
-
-#start session so we can access session variables
-session_start();
-if ( !isset( $_SESSION[ 'emplID' ] )  ) 
-{ 
-	header("Location: ../html/login.html");
-}
+require "../php/initialization.php";
 
 # validates that the user is administrator
 if ( $_SESSION[ 'emplType' ] != 2) {
@@ -25,9 +18,6 @@ if ( $_SESSION[ 'emplType' ] != 2) {
 }
 else if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST'  )
 {
-
-    # Open database connection
-	require ( '../php/database_connect.php' ); 
 
 	$orderID = $_POST[ 'deleteOrderID' ];
 

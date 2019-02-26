@@ -8,18 +8,10 @@
 # Author: Wyly Andrews
 #############################
 
-#start session so we can access session variables
-session_start();
-if ( !isset( $_SESSION[ 'emplID' ] ) ) 
-{ 
-	header("Location: ../html/login.html");
-}
+require "../php/initialization.php";
 
 if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
 {
-
-	# Open database connection
-	require ( '../php/database_connect.php' );
 
 	$emplID = $_SESSION[ 'emplID' ];
 

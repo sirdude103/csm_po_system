@@ -7,14 +7,7 @@
 # Author: Wyly Andrews
 #############################
 
-require "../php/timeout.php";
-
-#start session so we can access session variables
-session_start();
-if ( !isset( $_SESSION[ 'emplID' ] ) ) 
-{ 
-	header("Location: ../html/login.html");
-}
+require "../php/initialization.php";
 
 # Helper function to help us debug the program
 function debug_to_console( $data ) {
@@ -28,9 +21,6 @@ function debug_to_console( $data ) {
 if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
 {
 
-    # Open database connection
-	require ( '../php/database_connect.php' ); 
-    
     function modify_input($input) {
         $input = trim($input);
         $input = htmlspecialchars($input);
@@ -78,27 +68,10 @@ if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
 	}
 	else 
 	{
+		# no employee found
+		mysqli_close($dbc);
+		exit;
 		
-		# Make a new employee
-		$insertQuery = ("INSERT INTO employees (emplFirstName, emplLastName, department, emplAdvisor, emplEmail) values ( ?, ?, ?, ?, ? );");
-		
-		$preparedStatement = mysqli_prepare($dbc, $insertQuery);
-	
-		mysqli_stmt_bind_param($preparedStatement, 'sssss', $emplFirstName, $emplLastName, $emplDepartment, $emplAdvisor, $emplEmail);
-	
-		$isSuccess = mysqli_stmt_execute($preparedStatement);
-		
-		if ($isSuccess) 
-		{
-			echo "employee query submitted successfully.";
-			$employeeID = mysqli_insert_id($dbc);
-		}
-		else 
-		{
-			echo "Error occurred. Record not submitted.";
-			mysqli_close($dbc);
-			exit();
-		}
 	}
 
 	# make a new order

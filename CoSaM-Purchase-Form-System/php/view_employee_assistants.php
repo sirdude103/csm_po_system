@@ -3,24 +3,17 @@
 # Name: PHP view_employee_assistants.php
 # Description: shows the assistants working under current employee
 # Initial Creation Date: 01/28/2019
-# Last Modification Date: 01/28/2019
+# Last Modification Date: 02/21/2019
 # Author: Wyly Andrews
 ####################
 
-require ( '../php/database_connect.php' ); # Reference to php file that connects to database goes here
+require "../php/initialization.php"; 
 
-#start session so we can access session variables
-session_start();
-if ( isset( $_SESSION[ 'emplID' ] ) && $_SESSION[ 'emplType' ] >= 1 ) 
+#Reject access
+if ( $_SESSION[ 'emplType' ] < 1 ) 
 { 
-	$emplID = $_SESSION[ 'emplID' ];
-}
-else
-{
 	header("Location: ../html/login.html");
 }
-
-include( '../php/header_footer.php' );
 
 # Return employee
 function makeAssistantTable() {
