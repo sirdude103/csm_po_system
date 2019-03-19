@@ -144,7 +144,9 @@ if ($isSuccess)
 		mysqli_close($dbc);
 		exit();
 	}
+
 	# Each loop is a new product
+	$iResult = mysqli_stmt_get_result($iPreparedStatement);
 	for($j=0; $jRow = mysqli_fetch_row($iResult); $j++)
 	{
 		$productID = $jRow[0];
@@ -169,6 +171,7 @@ if ($isSuccess)
 		$product = array();
 		
 		# Each loop is a value of product
+		$jResult = mysqli_stmt_get_result($jPreparedStatement);
 		for($k=0; $kRow = mysqli_fetch_row($jResult); $k++)
 		{
 			foreach($kRow as $value)
