@@ -3,7 +3,7 @@
 # Name: PHP view_all_employees.php
 # Description: Shows all employees in system
 # Initial Creation Date: 11/07/2018
-# Last Modification Date: 02/21/2019
+# Last Modification Date: 03/19/2019
 # Author: Wyly Andrews
 ####################
 
@@ -170,18 +170,6 @@ function makeEmployeeTable() {
 	<link rel="stylesheet" type="text/css" href="../css/view_employee_orders.css">
 </head>
 <body>
-	<div id="addEmployee">
-		<h2>Add Employee</h2>
-		<form action="../php/add_employee.php" method="POST">
-			<table>
-				<tr>
-					<td>Enter employee username: </td>
-					<td><input type="text" id="addRequest" name="addRequest" /></td>
-					<td><input type="submit" ></td>
-				</tr>
-			</table>
-		</form>
-	</div>
 	<div id="searchSection">
 		<h2>View Employees</h2>
 		<form action="../php/view_all_employees.php" method="POST" >

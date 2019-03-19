@@ -3,7 +3,7 @@
 # Name: PHP header_footer.php
 # Description: Includes php and html used on almost every page
 # Initial Creation Date: 10/10/2018
-# Last Modification Date: 02/20/2019
+# Last Modification Date: 03/19/2019
 # Author: Wyly Andrews
 ####################
 
@@ -31,12 +31,6 @@ $emplType = $_SESSION[ 'emplType' ];
 			<li><a href="../php/form.php">Make a new order</a></li>
 			<li><a href="../php/view_employee_orders.php">Your orders</a></li>
 			
-			<?php if ( $emplType >= 1)
-			{
-				echo "<li><a href='../php/view_employee_assistants.php'>Your assistants</a></li>";
-			}
-			?>
-
 			<?php if ( $emplType == 2 ) 
 			{ 
 				echo "<li><a href='../php/view_all_orders.php'>All orders</a></li>"; 
