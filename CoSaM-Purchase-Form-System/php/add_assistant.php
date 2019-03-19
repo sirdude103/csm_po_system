@@ -15,12 +15,17 @@ if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
 	$assistantID = $_POST['newAssistantID'];
 	
 	# ensure user exists
-	$searchQuery = ( " SELECT ID FROM employees WHERE ID = $assistantID " );
-	$result = mysqli_query($dbc, $searchQuery);
+	$searchQuery = ( " SELECT ID FROM employees WHERE ID = ? " );
+	
+	$preparedStatement = mysqli_prepare($dbc, $searchQuery);
+	
+	mysqli_stmt_bind_param($preparedStatement, 'i', $assistantID);
 
-	if (@mysqli_num_rows( $result ) == 1) 
+	$isSuccess = mysqli_stmt_execute($preparedStatement);
+
+	if ($isSuccess) 
 	{
-		# add employee as an assitant to the bridge table
+		# add employee as an assistant to the bridge table
 		#$insertQuery = ( " INSERT " );
 	} else {
 		echo "no valid employee using ID #$assistantID.";
