@@ -3,7 +3,7 @@
 # Name: PHP profile.php
 # Description: Hosts profile page to allow changes to profile
 # Initial Creation Date: 10/30/2018
-# Last Modification Date: 11/26/2018
+# Last Modification Date: 03/22/2019
 # Author: Wyly Andrews
 ####################
 
@@ -14,7 +14,6 @@ $emplID = $_SESSION[ 'emplID' ];
 $emplFirstName = $_SESSION[ 'emplFirstName' ];
 $emplLastName = $_SESSION[ 'emplLastName' ];
 $emplDepartment = $_SESSION[ 'emplDepartment' ];
-$emplAdvisor = $_SESSION[ 'emplAdvisor' ];
 $emplEmail = $_SESSION[ 'emplEmail' ];
 if($emplEmail == "") { $emplEmail = "None"; }
 
@@ -34,7 +33,6 @@ if($emplEmail == "") { $emplEmail = "None"; }
 		<fieldset>
 			<h4>Name: </h4><label><?php echo $emplFirstName . " " . $emplLastName; ?></label>
 			<h4>Employee ID: </h4><label><?php echo $emplID; ?></label>
-			<h4>Advisor: </h4><label><?php echo $emplAdvisor; ?></label>
 			<h4>Email: </h4><p><input type="text" id="emplEmail" name="emplEmail" value=<?php echo $emplEmail; ?> /></p>
 			<h4>Department: </h4>
 			<select id="selectDepartment" name="selectDepartment">

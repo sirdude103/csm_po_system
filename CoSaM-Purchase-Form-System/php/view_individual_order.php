@@ -4,7 +4,7 @@
 # Name: PHP view_individual_order.php
 # Description: Views accessed order and all connected products
 # Initial Creation Date: 10/20/2018
-# Last Modification Date: 02/21/2019
+# Last Modification Date: 03/22/2019
 # Author: Wyly Andrews
 ####################
 
@@ -15,7 +15,6 @@ $emplID = $_SESSION[ 'emplID' ];
 $emplFirstName = $_SESSION[ 'emplFirstName' ];
 $emplLastName = $_SESSION[ 'emplLastName' ];
 $emplDepartment = $_SESSION[ 'emplDepartment' ];
-$emplAdvisor = $_SESSION[ 'emplAdvisor' ];
 $emplEmail = $_SESSION[ 'emplEmail' ];
 if($emplEmail == "") { $emplEmail = "None"; }
 
@@ -77,9 +76,7 @@ if ($isSuccess)
 		if($emplLastName == "") { $emplLastName = "Error"; }
 		$emplDepartment = $iRow[3];
 		if($emplDepartment == "") { $emplDepartment = "Error"; }
-		$emplAdvisor = $iRow[4];
-		if($emplAdvisor == "") { $emplAdvisor = "None"; }
-		$emplEmail = $iRow[5];
+		$emplEmail = $iRow[4];
 		if($emplEmail == "") { $emplEmail = "None"; }
 	}
 
@@ -348,7 +345,6 @@ switch($orderDepartment) {
 					<p><h4>Name: </h4><label><?php echo "$emplFirstName $emplLastName"; ?></label></p>
 					<p><h4>ID: </h4><label><?php echo "$emplIDOnOrder"; ?></label></p>
 					<p><h4>Department: </h4><label><?php echo "$orderDepartment"; ?></label></p>
-					<p><h4>Advisor: </h4><label><?php echo "$emplAdvisor"; ?></label></p>
 					<p><h4>Email: </h4><label><?php echo "$emplEmail"; ?></label></p>
 				</fieldset>
 			</div>

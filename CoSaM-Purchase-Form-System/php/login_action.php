@@ -3,7 +3,7 @@
 # Name: PHP login_action.php
 # Description: Handles Login attempts
 # Initial Creation Date: 10/2018
-# Last Modification Date: 02/21/2019
+# Last Modification Date: 03/22/2019
 # Author: Wyly Andrews
 ####################
 
@@ -16,13 +16,10 @@ $ePUID = $attr['eduPersonUniqueId'];
 require ('../php/database_connect.php');
 
 // Form search query to get employee information located across multiple tables
-$searchQuery =  "SELECT T1.ID, T1.emplFirstName, T1.emplLastName, T1.department, T1.emplEmail, T1.emplType, employees.emplFirstName, employees.emplLastName, T1.ePUID ";
-$searchQuery .= "FROM employees RIGHT JOIN ";
-$searchQuery .= "( SELECT ID, emplFirstName, emplLastName, department, emplEmail, emplType, advisorID, ePUID ";
-$searchQuery .= " FROM employees LEFT JOIN advisorAssistant ON advisorAssistant.assistantID = employees.ID ) ";
-$searchQuery .= "AS T1 ON T1.advisorID = employees.ID ";
+$searchQuery =  "SELECT ID, emplFirstName, emplLastName, department, emplEmail, emplType, ePUID ";
+$searchQuery .= "FROM employees "
 
-$searchQuery .= "WHERE T1.ePUID = ? "; 
+$searchQuery .= "WHERE ePUID = ? "; 
 
 $preparedStatement = mysqli_prepare($dbc, $searchQuery);
 
@@ -45,10 +42,6 @@ if ($isSuccess)
 	$_SESSION[ 'emplDepartment' ] = $row[3];
 	$_SESSION[ 'emplEmail' ] = $row[4];
 	$_SESSION[ 'emplType' ] = $row[5];
-
-	$emplAdvisor = $row[6]." ".$row[7];
-	if ($emplAdvisor == " ") { $emplAdvisor = "none"; }
-	$_SESSION[ 'emplAdvisor' ] = $emplAdvisor;
 	
 	header( 'Location: ../php/home.php' );
 }

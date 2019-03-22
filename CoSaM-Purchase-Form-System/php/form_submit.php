@@ -3,7 +3,7 @@
 # Name: PHP form_submit.php
 # Description: Handles initial purchase form submission
 # Initial Creation Date: 9/30/2018
-# Last Modification Date: 02/25/2019
+# Last Modification Date: 03/22/2019
 # Author: Wyly Andrews
 #############################
 
@@ -32,7 +32,6 @@ if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
     $emplLastName = modify_input( $_POST['emplLastName']);
     $emplDepartment = modify_input( $_POST['selectDepartment']);
     $emplEmail = modify_input( $_POST['emplEmail']);
-    $emplAdvisor = modify_input( $_POST['emplAdvisor']);
     
 	# Vendor Information
     $vendorName = $_POST['vendorName'];

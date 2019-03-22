@@ -3,7 +3,7 @@
 # Name: PHP view_all_employees.php
 # Description: Shows all employees in system
 # Initial Creation Date: 11/07/2018
-# Last Modification Date: 03/19/2019
+# Last Modification Date: 03/22/2019
 # Author: Wyly Andrews
 ####################
 
@@ -19,19 +19,18 @@ if ( $_SESSION[ 'emplType' ] != 2 )
 $searchRequest = "0";
 $searchType = "0";
 $searchOperator = "LIKE";
-$sortType = "T1.ID";
+$sortType = "ID";
 $sortDirection = "";
 
 if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
 {
 	if( isset( $_POST[ 'searchRequest' ] ) && $_POST[ 'searchRequest' ] != "" ) {
 		$searchRequest = $_POST[ 'searchRequest' ];
-		$searchType = "T1.ID"; #Dummy value
+		$searchType = "ID"; #Dummy value
 	}
 	if( isset( $_POST[ 'searchType' ] ) && $_POST[ 'searchType' ] != "" ) {
-		$searchType = "T1.";
-		$searchType .= $_POST[ 'searchType' ];
-		if ($searchType == "T1.ID") {
+		$searchType = $_POST[ 'searchType' ];
+		if ($searchType == "ID") {
 			$searchOperator = "=";
 		}
 		else {
@@ -40,8 +39,7 @@ if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
 	}
 
 	if( isset( $_POST[ 'sortType' ] ) && $_POST[ 'sortType' ] != "" ) {
-		$sortType = "T1.";
-		$sortType .= $_POST[ 'sortType' ];
+		$sortType = $_POST[ 'sortType' ];
 	}
 
 	$sortDirection = $_POST[ 'sortDirection' ];
@@ -57,13 +55,10 @@ function makeEmployeeTable() {
 	global $sortDirection;
 	global $dbc;
 
-	$searchQuery =  "SELECT T1.ID, T1.emplFirstName, T1.emplLastName, T1.department, T1.emplEmail, T1.emplType, employees.emplFirstName, employees.emplLastName ";
-	$searchQuery .= "FROM employees RIGHT JOIN ";
-	$searchQuery .= "( SELECT ID, emplFirstName, emplLastName, department, emplEmail, emplType, advisorID ";
-	$searchQuery .= " FROM employees LEFT JOIN advisorAssistant ON advisorAssistant.assistantID = employees.ID ) ";
-	$searchQuery .= "AS T1 ON T1.advisorID = employees.ID ";
+	$searchQuery =  "SELECT ID, emplFirstName, emplLastName, department, emplEmail, emplType ";
+	$searchQuery .= "FROM employees ";
 
-	//$searchQuery .= "WHERE $searchType ? $searchRequest ORDER BY T1.$sortType $sortDirection ";
+	//$searchQuery .= "WHERE $searchType ? $searchRequest ORDER BY $sortType $sortDirection ";
 
 	if( $searchOperator == "LIKE" ) {
 		$searchQuery .= "WHERE ? LIKE ? ORDER BY ?";
@@ -111,7 +106,7 @@ function makeEmployeeTable() {
 		#print "<td>Advisor</td>";
 		print "<td>Email</td>";
 		print "<td>Position</td>";
-		print "<td>Advisor</td>";
+		#print "<td>Advisor</td>";
 		print "</tr>";
 		print "<br/>";
 		do 
@@ -126,7 +121,7 @@ function makeEmployeeTable() {
 							print("<td>user</td>");
 							break;
 						case 1:
-							print("<td>advisor</td>");
+							print("<td>advisor (ERROR)</td>");
 							break;
 						case 2:
 							print("<td>administrator</td>");

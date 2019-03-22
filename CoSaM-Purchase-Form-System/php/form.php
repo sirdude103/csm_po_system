@@ -3,7 +3,7 @@
 # Name: PHP form.php
 # Description: Purchase Page
 # Initial Creation Date: 10/12/2018
-# Last Modification Date: 02/21/2019
+# Last Modification Date: 03/22/2019
 # Author: Wyly Andrews
 ####################
 
@@ -56,10 +56,6 @@ require "../php/initialization.php";
 				<div class="inputRow">
 					<label>Email</label>
 					<input type="text" id="emplEmail" name="emplEmail" <?php if($_SESSION['emplEmail']!="") {echo "value= ".$_SESSION['emplEmail'];} ?> readonly="readonly" />
-				</div>
-				<div class="inputRow">
-					<label>*Advisor</label>
-					<input type="text" id="emplAdvisor" name="emplAdvisor" maxlength="60" value=<?php echo $_SESSION['emplAdvisor']; ?> readonly="readonly" required />
 				</div>
 			</fieldset>
 
