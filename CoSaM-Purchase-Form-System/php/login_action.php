@@ -17,7 +17,7 @@ require ('../php/database_connect.php');
 
 // Form search query to get employee information located across multiple tables
 $searchQuery =  "SELECT ID, emplFirstName, emplLastName, department, emplEmail, emplType, ePUID ";
-$searchQuery .= "FROM employees "
+$searchQuery .= "FROM employees ";
 
 $searchQuery .= "WHERE ePUID = ? "; 
 
