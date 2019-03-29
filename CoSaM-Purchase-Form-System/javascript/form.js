@@ -28,6 +28,12 @@ function updateAddresses() {
     var department = selectDepartment.value;
     var shipToAddress = document.getElementById("shipToAddress");
     var billToAddress = document.getElementById("billToAddress");
+
+    billToAddress.innerHTML = "NDSU College of Science and Math Business Center" + "<br/>"
+        + "Department 2705" + "<br/>"
+        + "PO Box 6050" + "<br/>"
+        + "Fargo, ND 58108 - 6050";
+
     switch (department) {
         case "BIO-AGHILL":
             shipToAddress.innerHTML =
@@ -35,11 +41,6 @@ function updateAddresses() {
                 + "1306 Centennial Blvd" + "<br/>"
                 + "1340 Albrecht Boulevard" + "<br>"
                 + "Fargo, ND 58102";
-            billToAddress.innerHTML =
-                "Attn: Account Technician" + "<br/>"
-                + "NDSU Dept 2735 Ladd Hall Room 104" + "<br/>"
-                + "PO Box 6050" + "<br/>"
-                + "Fargo, ND 58108-6050";
             break;
         case "BIO-STEVENS":
             shipToAddress.innerHTML =
@@ -47,11 +48,6 @@ function updateAddresses() {
                 + "North Dakota State University" + "<br/>"
                 + "1340 Bolley Drive, 201 Stevens Hall" + "<br/>"
                 + "Fargo, ND 58102";
-            billToAddress.innerHTML = 
-                "Attn: Account Technician" + "<br/>"
-                + "NDSU Dept 2735 Ladd Hall Room 104" + "<br/>"
-                + "PO Box 6050" + "<br/>"
-                + "Fargo, ND 58108-6050";
             break;
         case "CHEM-QBB":
             shipToAddress.innerHTML =
@@ -59,12 +55,6 @@ function updateAddresses() {
                 + "NDSU Quentin Burdick Building 334" + "<br/>"
                 + "1320 Albrecht Blvd" + "<br>"
                 + "Fargo, ND 58102";
-            billToAddress.innerHTML =
-                "North Dakota State University" + "<br/>"
-                + "Department of Chemistry & Biochemistry" + "<br/>"
-                + "NDSU Dept 2735" + "<br/>"
-                + "PO Box 6050" + "<br/>"
-                + "Fargo, ND 58108-6050";
             break;
         case "CHEM-LADD":
             shipToAddress.innerHTML =
@@ -72,12 +62,6 @@ function updateAddresses() {
                 + "NDSU Ladd Hall 208" + "<br/>"
                 + "1231 Albrecht Blvd" + "<br/>"
                 + "Fargo, ND 58102";
-            billToAddress.innerHTML =
-                "North Dakota State University" + "<br/>"
-                + "Department of Chemistry & Biochemistry" + "<br/>"
-                + "NDSU Dept 2735" + "<br/>"
-                + "PO Box 6050" + "<br/>"
-                + "Fargo, ND 58108-6050";
             break;
         case "CPM":
             shipToAddress.innerHTML =
@@ -85,31 +69,16 @@ function updateAddresses() {
                 + "Research 1, Room 216" + "<br/>"
                 + "1735 NDSU Research Park Drive North" + "<br/>"
                 + "Fargo, North Dakota 58102";
-            billToAddress.innerHTML =
-                "Grant Account Technician" + "<br/>"
-                + "NDSU Dept 2705 Minard Hall 202" + "<br/>"
-                + "PO Box 6050" + "<br/>"
-                + "Fargo, ND 58108-6050";
             break;
         case "CSCI":
             shipToAddress.innerHTML =
                 "Quentin Burdick Building Room 258" + "<br/>"
                 + "1320 Albrecht Boulevard" + "<br/>"
                 + "Fargo, ND 58102";
-            billToAddress.innerHTML = 
-                "Department of Biological Sciences" + "<br/>"
-                + "North Dakota State University" + "<br/>"
-                + "1340 Bolley Drive, 201 Stevens Hall" + "<br/>"
-                + "Fargo, ND 58102";
             break;
         case "GEO":
             shipToAddress.innerHTML =
                 "North Dakota State University" + "<br/>"
-                + "1340 Bolley Drive, 201 Stevens Hall" + "<br/>"
-                + "Fargo, ND 58102";
-            billToAddress.innerHTML =
-                "Department of Biological Sciences" + "<br/>"
-                + "North Dakota State University" + "<br/>"
                 + "1340 Bolley Drive, 201 Stevens Hall" + "<br/>"
                 + "Fargo, ND 58102";
             break;
@@ -118,48 +87,27 @@ function updateAddresses() {
                 "NDSU Dept 2750" + "<br/>"
                 + "1210 Albrecht Blvd" + "<br/>"
                 + "Fargo, ND 58105";
-            billToAddress.innerHTML =
-                "Attn: Mathematics" + "<br/>"
-                + "NDSU Dept 2750" + "<br/>"
-                + "PO Box 6050" + "<br/>"
-                + "Fargo, ND 58108-6050";
             break;
         case "PHYS":
             shipToAddress.innerHTML =
                 "NDSU Dept 2755" + "<br/>"
                 + "1211 Albrecht Blvd" + "<br/>"
                 + "Fargo, ND 58105";
-            billToAddress.innerHTML =
-                "Attn: Physics" + "<br/>"
-                + "NDSU Dept 2755" + "<br/>"
-                + "PO Box 6050" + "<br/>"
-                + "Fargo, ND 58108-6050";
             break; 
         case "PSYC":
             shipToAddress.innerHTML =
                 "NDSU Dept 2765" + "<br/>"
                 + "1210 Albrecht Blvd" + "<br/>"
                 + "Fargo, ND 58105";
-            billToAddress.innerHTML =
-                "Attn: Psychology" + "<br/>"
-                + "NDSU Dept 2765" + "<br/>"
-                + "PO Box 6050" + "<br/>"
-                + "Fargo, ND 58108-6050";
             break;
         case "STAT":
             shipToAddress.innerHTML =
                 "NDSU Dept 2770" + "<br/>"
                 + "1230 Albrecht Blvd" + "<br/>"
                 + "Fargo, ND 58105";
-            billToAddress.innerHTML =
-                "Attn: Statistics" + "<br/>"
-                + "NDSU Dept 2770" + "<br/>"
-                + "PO Box 6050" + "<br/>"
-                + "Fargo, ND 58108-6050";
             break;
         default:
             shipToAddress.innerHTML = "Please enter a valid department.";
-            billToAddress.innerHTML = "Please enter a valid department.";
     }
 }
 selectDepartment.addEventListener("change", function () { updateAddresses(); });

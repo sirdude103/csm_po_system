@@ -187,6 +187,10 @@ else
 	header("Location: ../php/home.php");
 }
 
+$billTo = "NDSU College of Science and Math Business Center" . "<br/>"
+        . "Department 2705" . "<br/>"
+        . "PO Box 6050" . "<br/>"
+        . "Fargo, ND 58108 - 6050";
 switch($orderDepartment) {
 	case "BIO-AGHILL":
         $shipTo =
@@ -194,11 +198,6 @@ switch($orderDepartment) {
             . "1306 Centennial Blvd" . "<br/>"
             . "1340 Albrecht Boulevard" . "<br>"
             . "Fargo, ND 58102";
-        $billTo =
-            "Attn: Account Technician" . "<br/>"
-            . "NDSU Dept. 2735 Ladd Hall Room 104" . "<br/>"
-            . "PO Box 6050" . "<br/>"
-            . "Fargo, ND 58108-6050";
         break;
     case "BIO-STEVENS":
         $shipTo =
@@ -206,11 +205,6 @@ switch($orderDepartment) {
             . "North Dakota State University" . "<br/>"
             . "1340 Bolley Drive, 201 Stevens Hall" . "<br/>"
             . "Fargo, ND 58102";
-		$billTo =
-            "Attn: Account Technician" . "<br/>"
-            . "NDSU Dept. 2735 Ladd Hall Room 104" . "<br/>"
-            . "PO Box 6050" . "<br/>"
-            . "Fargo, ND 58108-6050";
         break;
     case "CHEM-QBB":
         $shipTo =
@@ -218,12 +212,6 @@ switch($orderDepartment) {
             . "NDSU Quentin Burdick Building 334" . "<br/>"
             . "1320 Albrecht Blvd" . "<br>"
             . "Fargo, ND 58102";
-        $billTo =
-            "North Dakota State University" . "<br/>"
-            . "Department of Chemistry & Biochemistry" . "<br/>"
-            . "NDSU Dept 2735" . "<br/>"
-            . "PO Box 6050" . "<br/>"
-            . "Fargo, ND 58108-6050";
         break;
     case "CHEM-LADD":
         $shipTo =
@@ -231,12 +219,6 @@ switch($orderDepartment) {
             . "NDSU Ladd Hall 208" . "<br/>"
             . "1231 Albrecht Blvd" . "<br/>"
             . "Fargo, ND 58102";
-        $billTo =
-            "North Dakota State University" . "<br/>"
-            . "Department of Chemistry & Biochemistry" . "<br/>"
-            . "NDSU Dept 2735" . "<br/>"
-            . "PO Box 6050" . "<br/>"
-            . "Fargo, ND 58108-6050";
         break;
     case "CPM":
         $shipTo =
@@ -244,31 +226,16 @@ switch($orderDepartment) {
             . "Research 1, Room 216" . "<br/>"
             . "1735 NDSU Research Park Drive North" . "<br/>"
             . "Fargo, North Dakota 58102";
-        $billTo =
-            "Grant Account Technician" . "<br/>"
-            . "NDSU Dept. 2705 Minard Hall 202" . "<br/>"
-            . "PO Box 6050" . "<br/>"
-            . "Fargo, ND 58108-6050";
         break;
     case "CSCI":
         $shipTo =
             "Quentin Burdick Building Room 258" . "<br/>"
             . "1320 Albrecht Boulevard" . "<br/>"
             . "Fargo, ND 58102";
-        $billTo = 
-			"Department of Biological Sciences" . "<br/>"
-            . "North Dakota State University" . "<br/>"
-            . "1340 Bolley Drive, 201 Stevens Hall" . "<br/>"
-            . "Fargo, ND 58102";
         break;
     case "GEO":
         $shipTo =
             "North Dakota State University" . "<br/>"
-            . "1340 Bolley Drive, 201 Stevens Hall" . "<br/>"
-            . "Fargo, ND 58102";
-        $billTo = 
-			"Department of Biological Sciences" . "<br/>"
-            . "North Dakota State University" . "<br/>"
             . "1340 Bolley Drive, 201 Stevens Hall" . "<br/>"
             . "Fargo, ND 58102";
         break;
@@ -277,48 +244,27 @@ switch($orderDepartment) {
             "NDSU Dept 2750" . "<br/>"
             . "1210 Albrecht Blvd" . "<br/>"
             . "Fargo, ND 58105";
-        $billTo =
-            "Attn: Mathematics" . "<br/>"
-            . "NDSU Dept 2750" . "<br/>"
-            . "PO Box 6050" . "<br/>"
-            . "Fargo, ND 58108-6050";
         break;
     case "PHYS":
         $shipTo =
             "NDSU Dept. 2755" . "<br/>"
             . "1211 Albrecht Blvd" . "<br/>"
             . "Fargo, ND 58105";
-        $billTo =
-            "Attn: Physics" . "<br/>"
-            . "NDSU Dept 2755" . "<br/>"
-            . "PO Box 6050" . "<br/>"
-            . "Fargo, ND 58108-6050";
         break; 
     case "PSYC":
         $shipTo =
             "NDSU Dept 2765" . "<br/>"
             . "1210 Albrecht Blvd" . "<br/>"
             . "Fargo, ND 58105";
-        $billTo =
-            "Attn: Psychology" . "<br/>"
-            . "NDSU Dept 2765" . "<br/>"
-            . "PO Box 6050" . "<br/>"
-            . "Fargo, ND 58108-6050";
         break;
     case "STAT":
         $shipTo =
             "NDSU Dept 2770" . "<br/>"
             . "1230 Albrecht Blvd" . "<br/>"
             . "Fargo, ND 58105";
-        $billTo =
-            "Attn: Statistics" . "<br/>"
-            . "NDSU Dept 2770" . "<br/>"
-            . "PO Box 6050" . "<br/>"
-            . "Fargo, ND 58108-6050";
         break;
     default:
         $shipTo = "No valid department selected";
-        $billTo = "No valid department selected";
 }
 
 ?>
