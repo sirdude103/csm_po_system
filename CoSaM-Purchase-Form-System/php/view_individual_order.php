@@ -275,7 +275,7 @@ switch($orderDepartment) {
 <head>
     <meta charset="utf-8" />
     <title>View Individual Order</title>
-	<script src="../javascript/validate_delete.js" defer></script>
+	<script src="../javascript/validate_cancel.js" defer></script>
 	<link rel="stylesheet" type="text/css" href="../css/view_individual_order.css">
 	<link rel="stylesheet" type="text/css" href="../css/print.css">
 	<link rel="stylesheet" type="text/css" href="../css/tables.css">
@@ -383,9 +383,9 @@ switch($orderDepartment) {
 
 		<br/>
 
-		<form id="deleteForm" action='../php/form_delete.php' onsubmit='return validateDelete()' method='POST'>
-			<input type='hidden' name='deleteOrderID' value=<?php echo $orderID; ?> >
-			<input type='submit' value='Delete Form'/>
+		<form id="cancelForm" action='../php/form_cancel.php' onsubmit='return validateCancel()' method='POST'>
+			<input type='hidden' name='cancelOrderID' value=<?php echo $orderID; ?> >
+			<input type='submit' value='Cancel Form'/>
 		</form>
 	</div>
 
