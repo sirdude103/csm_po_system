@@ -73,13 +73,18 @@ function makeEmployeeTable() {
 
 	$preparedStatement = mysqli_prepare($dbc, $searchQuery);
 	
-	mysqli_stmt_bind_param($preparedStatement, 'sss', $searchType, $searchRequest, $sortType);
+	mysqli_stmt_bind_param($preparedStatement, 'sis', $searchType, $searchRequest, $sortType);
 	
 	$isSuccess = mysqli_stmt_execute($preparedStatement);
 	
 	if ($isSuccess)
 	{
-		#echo "search query submitted successfully.";
+		#print "<p>Query submitted successfully.</p>";
+		echo "<br/>search type: " . $searchType;
+		echo "<br/>search request: ". $searchRequest;
+		echo "<br/>search operator: ". $searchOperator;
+		echo "<br/>sort type: ". $sortType;
+		echo "<br/>query: " . $searchQuery;
 	}
 	else 
 	{
@@ -94,6 +99,7 @@ function makeEmployeeTable() {
 	}
 
 	$result = mysqli_stmt_get_result($preparedStatement);
+	//echo "<br/>result: " . $result;
 	if ($row = mysqli_fetch_array($result, MYSQLI_NUM))
 	{
 
@@ -174,7 +180,7 @@ function makeEmployeeTable() {
 						<td><label>Search by:</label></td>
 						<td><input type="text" id="searchRequest" name="searchRequest" /></td>
 						<td><select id="searchType" name="searchType" >
-							<option value="">Select a value to search</option>
+							<option value="ID">Select a value to search</option>
 							<option value="ID">Employee ID</option>
 							<option value="emplFirstName">First Name</option>
 							<option value="emplLastName">Last Name</option>
