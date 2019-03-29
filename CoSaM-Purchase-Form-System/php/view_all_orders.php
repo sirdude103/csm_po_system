@@ -119,19 +119,26 @@ function makeOrdersTable() {
 	global $sortTypes;
 	global $sortDirections;
 	
+	// build search query
 	$searchQuery = " SELECT * FROM orders WHERE creationDT >= DATE_ADD(now(), INTERVAL -1 YEAR) ";
 	$bindChars = '';
+	
+	// collect all search requests
 	foreach($searchRequests as $key => $searchRequest) {
 		$bindChars .= 's';
 		$searchQuery .= " AND ".$searchTypes[$key]." ".$searchOperators[$key]." "." ? "; 
 	}
 
+	// only include ORDER BY if there's atr least one sort
 	if( count($sortTypes) >= 1 ) { $searchQuery .= " ORDER BY "; }
 
+	// collect all sort types
 	foreach($sortTypes as $key => $sortType) {
 		if ($key != 0) { $searchQuery .= ", "; }
 		$searchQuery .= $sortTypes[$key]." ".$sortDirections[$key];
 	}
+
+	// begin preparation and binding
 	$preparedStatement = mysqli_prepare($dbc, $searchQuery);
 	
 	if (count($searchRequests) == 1) {
@@ -219,90 +226,6 @@ function makeOrdersTable() {
 		print "</table>";
 		print "</div>";
 
-		# Return all products
-		/*
-		$searchQuery = ( " SELECT orderID FROM orders WHERE $searchType = ? ORDER BY $sortType $sortDirection ");
-		
-		$preparedStatement = mysqli_prepare($dbc, $searchQuery);
-		mysqli_stmt_bind_param($preparedStatement, 's', $searchRequest);
-		$isSuccess = mysqli_stmt_execute($preparedStatement);
-
-		if ($isSuccess) 
-		{
-			#echo "search query submitted successfully.";
-		}
-		else 
-		{
-			echo "Error occurred. Record not submitted. (error 200)";
-			mysqli_close($dbc);
-			exit();
-		}
-		
-		$result = mysqli_stmt_get_result($preparedStatement);
-		
-		# Each loop is a new order
-		while( $iRow = mysqli_fetch_array($result, MYSQLI_NUM) )
-		{ 
-			$orderID = $iRow[0];
-			$iSearchQuery = ( " SELECT productID FROM orderProduct WHERE orderID = $orderID ");
-		
-			$iResult = mysqli_query($dbc, $iSearchQuery);
-			if ($iResult) 
-			{
-				#echo "search query submitted successfully.";
-			}
-			else 
-			{
-				echo "Error occurred. Record not submitted. (error 300)";
-				mysqli_close($dbc);
-				exit();
-			}
-			
-			print "<div id=divTable>";
-			print "<table border>";
-			print "<tr><td>Order ID</td><td>Product ID</td><td>Quantity</td><td>Catalog Number</td><td>Description</td><td>Unit Price</td><td>Total Price</td></tr>";
-			print "<br/>";
-			# Each loop is a new product
-			for($j=0; $jRow = mysqli_fetch_row($iResult); $j++)
-			{
-				$productID = $jRow[0];
-				$jSearchQuery = ( " SELECT * FROM products WHERE productID = $productID ");
-				$jResult = mysqli_query($dbc, $jSearchQuery);
-				if ($jResult) 
-				{
-					#echo "search query submitted successfully.";
-				}
-				else 
-				{
-					echo "Error occurred. Record not submitted. (error 400)";
-					mysqli_close($dbc);
-					exit();
-				}
-
-				for($k=0; $kRow = mysqli_fetch_row($jResult); $k++)
-				{
-					print "<tr>";
-
-					if( $j==0 ) { print "<td>$orderID</td>"; }
-					else		{ print "<td></td>"; }
-
-					foreach($kRow as $kKey => $kValue)
-					{
-						if($kKey == 4 || $kKey == 5)
-							print "<td>$$kValue</td>";
-						else
-							print "<td>$kValue</td>";
-					}
-			
-					print "</tr>";
-
-				}
-		
-			}
-			print "</table>";
-			print "</div>";
-		}
-		*/
 
 	} else { # No orders found
 		print "<p>No matches found.</p>";
