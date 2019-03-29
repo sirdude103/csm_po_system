@@ -34,7 +34,6 @@ $emplType = $_SESSION[ 'emplType' ];
 			<?php if ( $emplType == 2 ) 
 			{ 
 				echo "<li><a href='../php/view_all_orders.php'>All orders</a></li>"; 
-				echo "<li><a href='../php/view_all_employees.php'>All employees</a></li>";
 			} 
 			?>
 
