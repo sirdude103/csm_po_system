@@ -275,7 +275,7 @@ switch($orderDepartment) {
 <head>
     <meta charset="utf-8" />
     <title>View Individual Order</title>
-	<script src="../javascript/validate_cancel.js" defer></script>
+	<script src="../javascript/validation.js" defer></script>
 	<link rel="stylesheet" type="text/css" href="../css/view_individual_order.css">
 	<link rel="stylesheet" type="text/css" href="../css/print.css">
 	<link rel="stylesheet" type="text/css" href="../css/tables.css">
@@ -379,9 +379,10 @@ switch($orderDepartment) {
     </div>
 
 	<div id="divButtons">
-		<button type="editButton" onclick="">Edit Form</button>
-
-		<br/>
+		<form id="editForm" action='../php/form_edit.php' onsubmit 'return validateEdit()' method='POST'>
+			<input type='hidden' name='editOrderID' value=<?php echo $orderID; ?> >
+			<input type='submit' value='Edit Form'/>
+		</form>
 
 		<form id="cancelForm" action='../php/form_cancel.php' onsubmit='return validateCancel()' method='POST'>
 			<input type='hidden' name='cancelOrderID' value=<?php echo $orderID; ?> >

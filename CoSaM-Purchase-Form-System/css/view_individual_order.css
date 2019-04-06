@@ -2,7 +2,7 @@
 * Name: CSS view_individual_order.css
 * Description: main css for view_individual_order.php
 * Initial Creation Date: 10/22/2018
-* Last Modification Date: 11/26/2018
+* Last Modification Date: 03/30/2019
 * Author: Wyly Andrews
 *************************/
 
@@ -85,6 +85,7 @@ h1 {
 }
 
 body > button {
+    margin: 10px;
     display: block;
 }
 
