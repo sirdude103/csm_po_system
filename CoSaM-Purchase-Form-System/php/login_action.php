@@ -26,35 +26,32 @@ $preparedStatement = mysqli_prepare($dbc, $searchQuery);
 mysqli_stmt_bind_param($preparedStatement, 's', $ePUID);
 
 $isSuccess = mysqli_stmt_execute($preparedStatement);
-
 if ($isSuccess) 
 {
 	echo "search query submitted successfully.";
 
 	$result = mysqli_stmt_get_result($preparedStatement);
-	$row = mysqli_fetch_array($result, MYSQLI_NUM);
-
-	# Start session
-	session_start();
-	$_SESSION[ 'emplID' ] = $row[0];
-	$_SESSION[ 'emplFirstName' ] = $row[1];
-	$_SESSION[ 'emplLastName' ] = $row[2];
-	$_SESSION[ 'emplDepartment' ] = $row[3];
-	$_SESSION[ 'emplEmail' ] = $row[4];
-	$_SESSION[ 'emplType' ] = $row[5];
+	if(@mysqli_num_rows( $result ) == 1)
+	{
+		$row = mysqli_fetch_array($result, MYSQLI_NUM);
+		# Start session
+		session_start();
+		$_SESSION[ 'emplID' ] = $row[0];
+		$_SESSION[ 'emplFirstName' ] = $row[1];
+		$_SESSION[ 'emplLastName' ] = $row[2];
+		$_SESSION[ 'emplDepartment' ] = $row[3];
+		$_SESSION[ 'emplEmail' ] = $row[4];
+		$_SESSION[ 'emplType' ] = $row[5];
 	
-	header( 'Location: ../php/home.php' );
+		header( 'Location: ../php/home.php' );
+	}
+	else
+	{
+		# send to login_newEmplCheck to check for registration
+
+		header("Location: ../php/login_newEmplCheck.php");
+	} 
 }
-else
-{
-
-	# send to login_newEmplCheck to check for registration
-	echo "<script type='text/javascript'>";
-	echo "alert('Unable to find your log-in! Checking new users...');";
-	echo "</script>";
-
-	header("Location: ../php/login_newEmplCheck.php");
-} 
 
 
 ?>

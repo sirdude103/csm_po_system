@@ -4,7 +4,7 @@
 # Name: PHP login_newEmplCheck.php
 # Description: Checks to see if user is new or not
 # Initial Creation Date: 02/24/2019
-# Last Modification Date: 03/24/2019
+# Last Modification Date: 04/04/2019
 # Author: Wyly Andrews
 ####################
 
@@ -17,13 +17,14 @@ $attr = phpCAS::getAttributes();
 $affiliations = $attr['scopedAffiliation'];
 $isEmployee = false;
 
-for ($affiliation in $affiliations) 
+foreach ($affiliations as $value) 
 {
-	if ($affiliation == "employee@ndsu.edu")
+	if ($value == "employee@ndsu.edu")
 	{
 		$isEmployee = true;
 	}
 }
+# echo "Made it into login_newEmplCheck";
 
 if ($isEmployee) 
 {
@@ -52,10 +53,7 @@ if ($isEmployee)
 			
 	if ($isSuccess) 
 	{
-		echo "<script type='text/javascript'>";
-		echo "alert('Successfully added you as employee! Logging you in...');";
-		echo "</script>";
-		header( 'Location: ../php/home.php' );
+		header( 'Location: ../php/login_action.php' );
 	}
 	else 
 	{
@@ -63,11 +61,10 @@ if ($isEmployee)
 		mysqli_close($dbc);
 		exit();
 	}
-
+	
 } # not an employee at NDSU
 else 
 {
-	echo "<script>console.log('no employee found. Unauthorized log-in.')</script>";
 	header( 'Location: ../php/access_denied.php' );
 }
 
