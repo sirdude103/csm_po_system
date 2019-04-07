@@ -29,7 +29,7 @@ $emplType = $_SESSION[ 'emplType' ];
 		<ul>
 			<li><a href="../php/home.php">Home</a></li>
 			<li><a href="../php/form.php">Make a new order</a></li>
-			<li><a href="../php/AUTOFILLED_FORM.php">AUTOFILLED FORM</li>
+			<li><a href="../php/AUTOFILLED_FORM.php">AUTOFILLED FORM</a></li>
 			<li><a href="../php/view_employee_orders.php">Your orders</a></li>
 			
 			<?php if ( $emplType == 2 ) 
