@@ -22,19 +22,19 @@ phpCAS::setDebug("https://www.ndsu.edu/pubweb/csm-po-system/php/debug.log");
 phpCAS::setVerbose(true);
 // Initialize phpCAS
 phpCAS::client(CAS_VERSION_3_0, $cas_host, $cas_port, $cas_context);
-// For production use set the CA certificate that is the issuer of the cert
-// on the CAS server and uncomment the line below
-//phpCAS::setServerServiceValidateURL('apps.ndsu.edu/cas/p3/serviceValidate');
-//phpCAS::setCasServerCACert('$cas_server_ca_cert_path');
-// For quick testing you can disable SSL validation of the CAS server.
-// THIS SETTING IS NOT RECOMMENDED FOR PRODUCTION.
-// VALIDATING THE CAS SERVER IS CRUCIAL TO THE SECURITY OF THE CAS PROTOCOL!
+
+//phpCAS::proxy(CAS_VERSION_3_0, $cas_host, $cas_port, $cas_context);
+
 phpCAS::setNoCasServerValidation();
+
+//phpCAS::setFixedCallbackURL('https://www.ndsu.edu/pubweb/csm-po-system/php/example_simple.php');
+phpCAS::setFixedServiceURL('https://www.ndsu.edu/pubweb/csm-po-system/php/example_simple.php');
+
 // force CAS authentication
 if (!phpCAS::isAuthenticated()) {
-	phpCAS::setFixedServiceURL('https://www.ndsu.edu/pubweb/csm-po-system/php/example_simple.php');
 	phpCAS::forceAuthentication();
 }
+
 // at this step, the user has been authenticated by the CAS server
 // and the user's login name can be read with phpCAS::getUser().
 // logout if desired
