@@ -7,10 +7,13 @@
 # Author: Wyly Andrews
 ####################
 
+# $save_path = session_save_path('/var/lib/php/session/groups/csm-po-system');
+
+$current_file = "php/home.php";
 require "../php/initialization.php";
 
 #start session so we can access session variables
-session_start();
+//if (!isset($_SESSION)) { session_start(); }
 if ( isset( $_SESSION[ 'emplID' ] ) ) 
 { 
 	$emplName = $_SESSION[ 'emplFirstName' ]." ".$_SESSION[ 'emplLastName' ];
@@ -19,7 +22,7 @@ if ( isset( $_SESSION[ 'emplID' ] ) )
 }
 else
 {
-	header("Location: ../php/login_action.php");
+	//header("Location: ../php/login_action.php");
 }
 
 ?>

@@ -47,6 +47,7 @@ $db_user = 'phpcasuser';
 $db_password = 'mysupersecretpass';
 $db_table = 'phpcastabel';
 $driver_options = ''; */
+
 ///////////////////////////////////////////
 // End Configuration -- Don't edit below //
 ///////////////////////////////////////////
@@ -59,7 +60,9 @@ if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
 if ($_SERVER['SERVER_PORT'] != 80 && $_SERVER['SERVER_PORT'] != 443) {
     $curbase .= ':' . $_SERVER['SERVER_PORT'];
 }
-$curdir = dirname($_SERVER['REQUEST_URI']) . "/";
+$curdir = "/pubweb/csm-po-system" . dirname($_SERVER['REQUEST_URI']) . "/";
+#$curfile = "/pubweb/csm-po-system" . $_SERVER['REQUEST_URI'];
+
 // CAS client nodes for rebroadcasting pgtIou/pgtId and logoutRequest
 $rebroadcast_node_1 = 'http://cas-client-1.example.com';
 $rebroadcast_node_2 = 'http://cas-client-2.example.com';

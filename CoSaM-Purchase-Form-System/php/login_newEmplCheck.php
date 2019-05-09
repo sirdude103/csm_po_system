@@ -8,7 +8,7 @@
 # Author: Wyly Andrews
 ####################
 
-
+$current_file = "php/login_newEmplCheck.php";
 require "../php/CAS_authentication.php";
 require "../php/database_connect.php";
 

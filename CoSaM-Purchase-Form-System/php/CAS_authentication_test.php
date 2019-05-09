@@ -2,7 +2,7 @@
 
 
 // Load the CAS lib
-include_once('./config.php');
+require_once('./config.php');
 require_once('../phpCAS-master/CAS.php');
 
 // Enable debugging

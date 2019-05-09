@@ -7,13 +7,27 @@
 # Author: Wyly Andrews
 ####################
 
-require "../php/CAS_authentication.php";
+function log_m($message) {
+	echo "<script>";
+	echo "console.log('$message')";
+	echo "</script>";
+}
+log_m("Inside init file");
 
 #start session so we can access session variables
+$save_path = session_save_path('/var/lib/php/session/groups/csm-po-system');
 session_start();
+
+require "../php/CAS_authentication.php";
+
+log_m("Passed through CAS file");
+
+
+
 if ( !isset( $_SESSION[ 'emplID' ] ) ) 
 { 
-	header("Location: ../php/login_action.php");
+	echo "no emplID found!";
+ 	header("Location: ../php/login_action.php");
 }
 
 require "../php/timeout.php";

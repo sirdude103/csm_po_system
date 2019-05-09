@@ -16,8 +16,11 @@
 require_once './config.php';
 // Load the CAS lib
 require_once $phpcas_path . '/CAS.php';
+
+$save_path = session_save_path('/var/lib/php/session/groups/csm-po-system');
+
 // Enable debugging
-phpCAS::setDebug("https://www.ndsu.edu/pubweb/csm-po-system/php/debug.log");
+//phpCAS::setDebug("C:\\Users\\gandr\\Documents");
 // Enable verbose error messages. Disable in production!
 phpCAS::setVerbose(true);
 // Initialize phpCAS
@@ -49,9 +52,15 @@ if (isset($_REQUEST['logout'])) {
   </head>
   <body>
     <h1>Successfull Authentication!</h1>
-    <?php require 'script_info.php' ?>
     <p>the user's login is <b><?php echo phpCAS::getUser(); ?></b>.</p>
     <p>phpCAS version is <b><?php echo phpCAS::getVersion(); ?></b>.</p>
-    <p><a href="?logout=">Logout</a></p>
-  </body>
+	<p>Save_Path: <?php echo $save_path; ?></p>
+	<p>Current directory is: <?php echo $curdir; ?></p>
+	<p>Current base is: <?php echo $curbase; ?></p>
+	<p>__FILE__ is: <?php echo __FILE__; ?></p>
+	<p>$_SERVER["SCRIPT_FILENAME"] is: <?php echo $_SERVER["SCRIPT_FILENAME"]; ?> </p>
+	<p>$_SERVER['PHP_SELF'] is: <?php echo $_SERVER['PHP_SELF']; ?></p>
+	<p>basename(__FILE__) is: <?php echo basename(__FILE__); ?></p>
+	<p>"-----"</p>
+	</body>
 </html>
